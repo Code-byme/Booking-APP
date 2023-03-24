@@ -7,7 +7,7 @@ function PastEvents() {
          getEvent()
     },[])
    const getEvent = async () => {
-     const response = await fetch("http://localhost:4000/ticket/?url=http://35.163.82.245:8081/events/list/last/30/0")
+     const response = await fetch("https://backend-szh0.onrender.com/ticket/?url=http://35.163.82.245:8081/events/list/last/30/0")
      const data =  await response.json();
      setEvents(data.list)
    }
