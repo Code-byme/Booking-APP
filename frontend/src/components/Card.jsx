@@ -13,23 +13,23 @@ function Card({event}) {
         return str.replace( /(<([^>]+)>)/ig, '');
     }
   return (
-    <div class="flex justify-center">
+    <div className="flex justify-center">
 
     <div
-    class="block max-w-sm rounded-lg bg-white shadow-lg dark:bg-neutral-700 transition-[0.7s] duration-[ease] hover:scale-110">
+    className="block max-w-sm rounded-lg bg-white shadow-lg  transition-[0.7s] duration-[ease] hover:scale-110">
     <a href="#!" data-te-ripple-init data-te-ripple-color="light">
       <img
-        class="rounded-t-lg"
+        className="rounded-t-lg"
         src={event.image}
         alt="" />
     </a>
-    <div class="p-6">
+    <div className="p-6">
       <h5
-        class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50">
+        className="mb-2 text-xl font-medium leading-tight text-neutral-800 ">
         {event.title}
       </h5>
       <div className={`${event.event_date_format ? "flex justify-between items-center" : "justify-self-center"}`}>
-      <span class="text-xs">{event.event_date_format}</span>
+      <span className="text-xs">{event.event_date_format}</span>
       <span className='text-xs font-bold'>{event.price}Dhs</span>
       </div>
       
