@@ -16,12 +16,12 @@ export default function NavBar() {
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <a href="/">
+            <Link to={"/"}>
               <img
                 src="//www.ticket.ma/img/logo.png"
                 className="clip-logoticketma"
               />
-            </a>
+            </Link>
             <div className="md:hidden">
               <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -89,37 +89,41 @@ export default function NavBar() {
           >
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               <li className=" hover:text-indigo-200">
-                <a href="/">Home</a>
+                <Link to={"/"}>Home</Link>
               </li>
               <li className=" hover:text-indigo-200">
-                <a href="/">Blog</a>
+                <Link to={"/"}>Blog</Link>
               </li>
               <li className=" hover:text-indigo-200">
-                <a href="/">About US</a>
+                <Link to={"/"}>About US</Link>
               </li>
               <li className=" hover:text-indigo-200">
-                <a href="/">Contact US</a>
+                <Link to={"/"}>Contact US</Link>
               </li>
             </ul>
 
             <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-              <a
-                href="/"
+              {user ?<> <p className="mr-7">{user.username}</p>
+            <button onClick={()=>Logout()} className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800 w-full">
+              Logout
+            </button> </> : <>
+              <Link
+                to={"/auth/login"}
                 className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
               >
                 Sign in
-              </a>
-              <a
-                href="/"
+              </Link>
+              <Link
+                to={"/"}
                 className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
               >
                 Sign up
-              </a>
+              </Link> </>}
             </div>
           </div>
         </div>
         {user ? (
-          <div className="flex">
+          <div className=" hidden lg:flex">
             <p className="mr-7">{user.username}</p>
             <button onClick={()=>Logout()} className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
               Logout
@@ -133,12 +137,12 @@ export default function NavBar() {
             >
               Sign in
             </Link>
-            <a
-              href="/"
+            <Link
+              to={"/"}
               className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
             >
               Sign up
-            </a>
+            </Link>
           </div>
         )}
       </div>

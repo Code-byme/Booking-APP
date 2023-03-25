@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 function Card({event}) {
     function removeTags(str) {
@@ -17,12 +18,12 @@ function Card({event}) {
 
     <div
     className="block max-w-sm rounded-lg bg-white shadow-lg  transition-[0.7s] duration-[ease] hover:scale-110">
-    <a href="#!" data-te-ripple-init data-te-ripple-color="light">
+    <Link href={"#!"} data-te-ripple-init data-te-ripple-color="light">
       <img
         className="rounded-t-lg"
         src={event.image}
         alt="" />
-    </a>
+    </Link>
     <div className="p-6">
       <h5
         className="mb-2 text-xl font-medium leading-tight text-neutral-800 ">
