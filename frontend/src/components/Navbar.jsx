@@ -1,4 +1,5 @@
 import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 export default function NavBar() {
@@ -126,12 +127,12 @@ export default function NavBar() {
           </div>
         ) : (
           <div className="hidden space-x-2 md:inline-block">
-            <a
-              href="/auth/login"
+            <Link
+              to={"/auth/login"}
               className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
             >
               Sign in
-            </a>
+            </Link>
             <a
               href="/"
               className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
