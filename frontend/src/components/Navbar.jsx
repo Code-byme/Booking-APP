@@ -1,8 +1,14 @@
-import { useState } from "react";
-
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
+  const { user } = useContext(AuthContext);
+
+  function Logout() {
+    localStorage.removeItem("user")
+    location.reload()
+    } 
 
   return (
     <nav className="w-full  shadow bg-gray-50">
@@ -111,20 +117,29 @@ export default function NavBar() {
             </div>
           </div>
         </div>
-        <div className="hidden space-x-2 md:inline-block">
-          <a
-            href="/login"
-            className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-          >
-            Sign in
-          </a>
-          <a
-            href="/"
-            className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-          >
-            Sign up
-          </a>
-        </div>
+        {user ? (
+          <div className="flex">
+            <p className="mr-7">{user.username}</p>
+            <button onClick={()=>Logout()} className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
+              Logout
+            </button>
+          </div>
+        ) : (
+          <div className="hidden space-x-2 md:inline-block">
+            <a
+              href="/auth/login"
+              className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
+            >
+              Sign in
+            </a>
+            <a
+              href="/"
+              className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+            >
+              Sign up
+            </a>
+          </div>
+        )}
       </div>
     </nav>
   );

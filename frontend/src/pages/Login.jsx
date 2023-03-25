@@ -1,13 +1,15 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
-import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 function Login() {
         const [credentials, setCredentials] = useState({
         username: undefined,
         password: undefined,
         });
-        const { user, loading, error, dispatch} = useContext(AuthContext);
+        const { loading, error, dispatch} = useContext(AuthContext);
+
+        const navigate = useNavigate()
 
         const handleChange = (e) => {
             setCredentials(prev=>({...prev, [e.target.id]: e.target.value}));
@@ -25,11 +27,12 @@ function Login() {
               });
               const data = await response.json();
               dispatch({ type: "LOGIN_SUCCESS", payload: data });
+              navigate("/")
             } catch (err) {
               dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
             }
           };
-          console.log(user)
+          
 
   return (
     <div className='bg-[url("/bg.jpg")] bg-cover'>
@@ -103,7 +106,7 @@ function Login() {
                     Forgot password?
                   </a>
                 </div>
-                <button onClick={handleClick}
+                <button disabled={loading} onClick={handleClick}
                   type="submit"
                   className="w-full text-white bg-gray-600  hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
