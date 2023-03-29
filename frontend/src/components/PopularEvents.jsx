@@ -1,7 +1,9 @@
 import React, { useEffect,useState} from 'react'
+import { Link } from 'react-router-dom'
 import Card from './Card'
 
-function PopularEvents() {  
+function PopularEvents() { 
+
     
     const [events, setEvents] = useState([])
     useEffect( ()=>{
@@ -15,16 +17,18 @@ function PopularEvents() {
    console.log(events)
   return (
     <div>
+      
         <div className="flex items-center py-4">
         
         <div className="flex-grow h-px bg-gray-400 mr-6"></div> 
-        <h1 className="text-4xl font-extrabold mt-9 mb-6 text-center">Popular Events</h1>
+        <h1 className="text-3xl font-medium mt-9 mb-6 text-center">Les événements populaires</h1>
         <div className="flex-grow h-px bg-gray-400 ml-6"></div>
     
         </div>
         <div className="max-w-screen-lg grid grid-cols-1 gap-6 text-center mx-auto w-2/3 lg:grid-cols-4 ">
   {events.map(event=>{
-    return <Card event={event}/>
+    return    <>  <Link to={"/eventdetail/"+event.id} > <Card event={event} /> </Link></>
+
   })}
   </div>
 </div>

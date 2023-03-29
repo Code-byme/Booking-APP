@@ -1,5 +1,6 @@
 import NavBar from "./Navbar";
 import { Outlet } from "react-router-dom";
+import Footer from "./Footer";
 
 
 function LayoutHeaderOnly() {
@@ -7,6 +8,7 @@ function LayoutHeaderOnly() {
     <>
     <NavBar />
     <Outlet />
+    <Footer />
    
   </>
   )

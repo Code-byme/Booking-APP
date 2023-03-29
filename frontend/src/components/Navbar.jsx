@@ -7,9 +7,9 @@ export default function NavBar() {
   const { user } = useContext(AuthContext);
 
   function Logout() {
-    localStorage.removeItem("user")
-    location.reload()
-    } 
+    localStorage.removeItem("user");
+    location.reload();
+  }
 
   return (
     <nav className="w-full  shadow bg-gray-50">
@@ -62,23 +62,46 @@ export default function NavBar() {
         </div>
         <div className="flex justify-center">
           <div className="mb-3 xl:w-96 mt-8">
-            <div className="relative mb-4 flex w-full flex-wrap items-stretch">
-              <input
-                type="search"
-                className="relative m-0 -mr-px block w-[1%] min-w-0 flex-auto rounded-l border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-1.5 text-base font-normal text-neutral-700 outline-none transition duration-300 ease-in-out focus:border-primary-600 focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200"
-                placeholder="Search"
-                aria-label="Search"
-                aria-describedby="button-addon3"
-              />
-              <button
-                className="relative z-[2] rounded-r border-2 border-primary px-6 py-2 text-xs font-medium uppercase text-primary transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
-                type="button"
-                id="button-addon3"
-                data-te-ripple-init
+            <form>
+              <label
+                form="default-search"
+                className="mb-2 text-sm font-medium text-gray-900 sr-only"
               >
                 Search
-              </button>
-            </div>
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <svg
+                    aria-hidden="true"
+                    className="w-5 h-5 text-gray-500 "
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <input
+                  type="search"
+                  id="default-search"
+                  className="mb-3  block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50"
+                  placeholder="Search..."
+                  required
+                />
+                <button
+                  type="submit"
+                  className="text-white absolute right-2.5 bottom-2.5 bg-gray-600  hover:bg-gray-800  font-medium rounded-lg text-sm px-4 py-2"
+                >
+                  Search
+                </button>
+              </div>
+            </form>
           </div>
         </div>
         <div>
@@ -87,45 +110,84 @@ export default function NavBar() {
               navbar ? "block" : "hidden"
             }`}
           >
-            <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
-              <li className=" hover:text-indigo-200">
-                <Link to={"/"}>Home</Link>
+            <ul className="sm:hidden md:hidden lg:flex items-center justify-center space-y-8 md:space-x-6 md:space-y-0">
+              <li className="hover:text-indigo-200 ">
+                <Link to={"/"} className=" text-gray-600 hover:text-indigo-200">
+                Accueil
+                </Link>
               </li>
-              <li className=" hover:text-indigo-200">
-                <Link to={"/"}>Blog</Link>
+              <li className="hover:text-indigo-200">
+                <a
+                  href="/listings/1"
+                  className=" text-gray-600 hover:text-indigo-200 "
+                >
+                  Concerts
+                </a>
               </li>
-              <li className=" hover:text-indigo-200">
-                <Link to={"/"}>About US</Link>
+              <li className="hover:text-indigo-200">
+                <a
+                  href="/listings/2"
+                  className=" text-gray-600 hover:text-indigo-200"
+                >
+                  Théâtre Humor
+                </a>
               </li>
-              <li className=" hover:text-indigo-200">
-                <Link to={"/"}>Contact US</Link>
+              <li className="hover:text-indigo-200">
+                <a
+                  href="/listings/4"
+                  className=" text-gray-600 hover:text-indigo-200"
+                >
+                  Festivals
+                </a>
+              </li>
+              <li className="hover:text-indigo-200">
+                <a
+                  href="/listings/3"
+                  className=" text-gray-600 hover:text-indigo-200"
+                >
+                  Loisirs
+                </a>
               </li>
             </ul>
 
-            <div className="mt-3 space-y-2 lg:hidden md:inline-block">
-              {user ?<> <p className="mr-7">{user.username}</p>
-            <button onClick={()=>Logout()} className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800 w-full">
-              Logout
-            </button> </> : <>
-              <Link
-                to={"/auth/login"}
-                className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
-              >
-                Sign in
-              </Link>
-              <Link
-                to={"/auth/register"}
-                className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
-              >
-                Sign up
-              </Link> </>}
+            <div className="mt-3 md:hidden space-y-2 lg:hidden ">
+              {user ? (
+                <>
+                  {" "}
+                  <p className="mr-7">{user.username}</p>
+                  <button
+                    onClick={() => Logout()}
+                    className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800 w-full"
+                  >
+                    Logout
+                  </button>{" "}
+                </>
+              ) : (
+                <>
+                  <Link
+                    to={"/auth/login"}
+                    className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
+                  >
+                    Sign in
+                  </Link>
+                  <Link
+                    to={"/auth/register"}
+                    className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
+                  >
+                    Sign up
+                  </Link>{" "}
+                </>
+              )}
             </div>
           </div>
         </div>
         {user ? (
           <div className=" hidden lg:flex">
             <p className="mr-7">{user.username}</p>
-            <button onClick={()=>Logout()} className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800">
+            <button
+              onClick={() => Logout()}
+              className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
+            >
               Logout
             </button>
           </div>

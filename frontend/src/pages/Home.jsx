@@ -17,7 +17,7 @@ function Home() {
       <EventsTypes />
       <PopularEvents />
       <PastEvents />
-      <Footer />
+      
     </div>
   );
 }

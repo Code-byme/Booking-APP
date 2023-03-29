@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function Login() {
         const [credentials, setCredentials] = useState({
@@ -15,23 +16,21 @@ function Login() {
             setCredentials(prev=>({...prev, [e.target.id]: e.target.value}));
         }
         const handleClick = async (e) => {
-            e.preventDefault();
-            dispatch({ type: "LOGIN_START" });
-            try {
-              const response = await fetch("http://localhost:4000/api/auth/login", {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify(credentials),
-              });
-              const data = await response.json();
-              dispatch({ type: "LOGIN_SUCCESS", payload: data });
-              navigate("/")
-            } catch (err) {
-              dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
-            }
-          };
+          e.preventDefault();
+          dispatch({ type: "LOGIN_START" });
+        
+          try {
+            const response = await axios.post("http://localhost:4000/api/auth/login", credentials, {
+              headers: {
+                "Content-Type": "application/json"
+              }
+            });
+            dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
+            navigate("/");
+          } catch (err) {
+            dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+          }
+        };
           
 
   return (
@@ -115,7 +114,7 @@ function Login() {
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                   Don’t have an account yet?{" "}
                   <Link
-                    to={"#"}
+                    to={"/auth/register"}
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
                     Sign up

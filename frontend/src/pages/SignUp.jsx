@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 function SignUp() {
@@ -19,30 +20,28 @@ function SignUp() {
   const handleClick = async (e) => {
     e.preventDefault();
     dispatch({ type: "REGISTER_START" });
+  
     try {
-      const response = await fetch("http://localhost:4000/api/auth/register", {
-        method: "POST",
+      const response = await axios.post("http://localhost:4000/api/auth/register", credentials, {
         headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(credentials),
+          "Content-Type": "application/json"
+        }
       });
-      const data = await response.json();
-      console.log(data);
-      dispatch({ type: "REGISTER_SUCCESS", payload: data });
+      dispatch({ type: "REGISTER_SUCCESS", payload: response.data });
       navigate("/");
     } catch (err) {
-      dispatch({ type: "LOGIN_FAILURE", payload: err.response.data });
+      dispatch({ type: "REGISTER_FAILURE", payload: err.response.data });
     }
   };
+  
 
   return (
-    <div className='bg-[url("/bg.jpg")] bg-cover'>
+    <div className='bg-[url("/bg.jpg")] bg-cover h-screen '>
       <section>
-        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-          <div class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
-            <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+        <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto   lg:py-0 ">
+          <div class="w-full bg-white rounded-lg shadow dark:border mt-20 sm:max-w-md xl:p-0  ">
+          <div class="p-6 space-y-4 md:space-y-6 sm:p-8 h-2/3 ">
+              <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                 Create an account
               </h1>
               <form class="space-y-4 md:space-y-6" action="#">
