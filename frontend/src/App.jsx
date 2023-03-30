@@ -8,19 +8,17 @@ import Listings from "./pages/Listings";
 import EventDetail from "./pages/EventDetail";
 
 function App() {
-
   return (
     <div>
       <BrowserRouter>
         <Routes>
+
           <Route element={<LayoutHeaderOnly />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/auth/login" element={<Login />} />
-            <Route path="/auth/register" element={<SignUp/>}/>
-            <Route path="/eventdetail/:id" element={<EventDetail/>}/>
-
-            <Route path="/listings/:id" element={<Listings/>}/>
-
+            <Route  path="/" element={<Home />} />
+            <Route  path="/auth/login" element={<Login />} />
+            <Route  path="/auth/register" element={<SignUp />} />
+            <Route  path="/eventdetail/:id" element={<EventDetail />} />
+            <Route  path="/listings/:id" element={<Listings />} />
           </Route>
         </Routes>
       </BrowserRouter>

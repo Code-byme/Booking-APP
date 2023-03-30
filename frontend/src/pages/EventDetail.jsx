@@ -80,7 +80,7 @@ function EventDetail() {
               {event.city}-{event.country}
             </span>
             <p class="font-normal text-gray-700 ">
-              Heure du spectacle {event.open_at}
+              Heure {event.open_at}
             </p>
           </a>
           <div className="mt-3">

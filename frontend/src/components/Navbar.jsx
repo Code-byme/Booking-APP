@@ -1,10 +1,12 @@
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
   const { user } = useContext(AuthContext);
+  
 
   function Logout() {
     localStorage.removeItem("user");
@@ -80,9 +82,9 @@ export default function NavBar() {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                     ></path>
                   </svg>
@@ -113,40 +115,41 @@ export default function NavBar() {
             <ul className="sm:hidden md:hidden lg:flex items-center justify-center space-y-8 md:space-x-6 md:space-y-0">
               <li className="hover:text-indigo-200 ">
                 <Link to={"/"} className=" text-gray-600 hover:text-indigo-200">
-                Accueil
+                  Home
+                </Link>
+              </li>
+
+              <li className="hover:text-indigo-200">
+                <Link
+                  to={"/listings/1"}
+                  className="text-gray-600 hover:text-indigo-200"
+                >
+                  Concerts
                 </Link>
               </li>
               <li className="hover:text-indigo-200">
-                <a
-                  href="/listings/1"
-                  className=" text-gray-600 hover:text-indigo-200 "
+                <Link
+                  to={"/listings/2"}
+                  className="text-gray-600 hover:text-indigo-200"
                 >
-                  Concerts
-                </a>
+                  Theater Humor
+                </Link>
               </li>
               <li className="hover:text-indigo-200">
-                <a
-                  href="/listings/2"
-                  className=" text-gray-600 hover:text-indigo-200"
-                >
-                  Théâtre Humor
-                </a>
-              </li>
-              <li className="hover:text-indigo-200">
-                <a
-                  href="/listings/4"
-                  className=" text-gray-600 hover:text-indigo-200"
+                <Link
+                  to={"/listings/4"}
+                  className="text-gray-600 hover:text-indigo-200"
                 >
                   Festivals
-                </a>
+                </Link>
               </li>
               <li className="hover:text-indigo-200">
-                <a
-                  href="/listings/3"
-                  className=" text-gray-600 hover:text-indigo-200"
+                <Link
+                  to={"/listings/3"}
+                  className="text-gray-600 hover:text-indigo-200"
                 >
                   Loisirs
-                </a>
+                </Link>
               </li>
             </ul>
 

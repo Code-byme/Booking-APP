@@ -9,7 +9,7 @@ function Listings() {
   console.log(routeParams);
   useEffect(() => {
     getEvent();
-  }, []);
+  }, [routeParams.id]);
   const getEvent = async () => {
     const response = await fetch(
       `https://backend-szh0.onrender.com/ticket/?url=http://35.163.82.245:8081/events/list/last/30/${routeParams.id}`

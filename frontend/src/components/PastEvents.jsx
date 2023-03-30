@@ -7,7 +7,7 @@ function PastEvents() {
          getEvent()
     },[])
    const getEvent = async () => {
-     const response = await fetch("https://backend-szh0.onrender.com/ticket/?url=http://35.163.82.245:8081/events/list/last/30/0")
+     const response = await fetch("https://backend-szh0.onrender.com/ticket/?url=http://35.163.82.245:8081/events/list/past/30/0")
      const data =  await response.json();
      setEvents(data.list)
    }
@@ -20,7 +20,7 @@ function PastEvents() {
         <div className="flex-grow h-px bg-gray-400 ml-6"></div>
         </div>
     <div className="max-w-screen-lg grid grid-cols-1 gap-6 text-center mx-auto w-2/3 lg:grid-cols-4 ">
-  {events.slice(0,8).map(event=>{
+  {events.map(event=>{
     return <Card event={event}/>
   })}
   </div>
