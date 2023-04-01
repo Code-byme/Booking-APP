@@ -41,7 +41,7 @@ function EventDetail() {
 
   if (event) {
     return (
-      <div className="lg:flex justify-center ml-[120px]">
+      <div className="lg:flex justify-center lg:ml-[120px]">
         <div className="p-11">
           <div className="flex flex-col  bg-white rounded shadow-lg sm:w-3/4 md:w-1/2 lg:w-3/5">
             <div className="flex flex-col w- md:flex-row">
@@ -68,10 +68,10 @@ function EventDetail() {
             </div>
           </div>
         </div>
-        <div className="p-11 absolute ml-[700px]">
+        <div className="p-11 lg:absolute lg:ml-[700px]">
           <a
             href="#"
-            className=" block w-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
+            className=" block lg:w-96 p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100"
           >
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
               {event.theater_location}

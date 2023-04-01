@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
   const { user } = useContext(AuthContext);
-  
 
   function Logout() {
     localStorage.removeItem("user");
@@ -18,7 +17,7 @@ export default function NavBar() {
       <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
         <div>
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
-            <Link to={"/"}>
+            <Link onClick={() => setNavbar(false)} to={"/"}>
               <img
                 src="//www.ticket.ma/img/logo.png"
                 className="clip-logoticketma"
@@ -114,13 +113,18 @@ export default function NavBar() {
           >
             <ul className="sm:hidden md:hidden lg:flex items-center justify-center space-y-8 md:space-x-6 md:space-y-0">
               <li className="hover:text-indigo-200 ">
-                <Link to={"/"} className=" text-gray-600 hover:text-indigo-200">
+                <Link
+                  onClick={() => setNavbar(false)}
+                  to={"/"}
+                  className=" text-gray-600 hover:text-indigo-200"
+                >
                   Home
                 </Link>
               </li>
 
               <li className="hover:text-indigo-200">
                 <Link
+                  onClick={() => setNavbar(false)}
                   to={"/listings/1"}
                   className="text-gray-600 hover:text-indigo-200"
                 >
@@ -129,6 +133,7 @@ export default function NavBar() {
               </li>
               <li className="hover:text-indigo-200">
                 <Link
+                  onClick={() => setNavbar(false)}
                   to={"/listings/2"}
                   className="text-gray-600 hover:text-indigo-200"
                 >
@@ -137,6 +142,7 @@ export default function NavBar() {
               </li>
               <li className="hover:text-indigo-200">
                 <Link
+                  onClick={() => setNavbar(false)}
                   to={"/listings/4"}
                   className="text-gray-600 hover:text-indigo-200"
                 >
@@ -145,6 +151,7 @@ export default function NavBar() {
               </li>
               <li className="hover:text-indigo-200">
                 <Link
+                  onClick={() => setNavbar(false)}
                   to={"/listings/3"}
                   className="text-gray-600 hover:text-indigo-200"
                 >
@@ -159,7 +166,10 @@ export default function NavBar() {
                   {" "}
                   <p className="mr-7">{user.username}</p>
                   <button
-                    onClick={() => Logout()}
+                    onClick={() => {
+                      Logout();
+                      setNavbar(false);
+                    }}
                     className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800 w-full"
                   >
                     Logout
@@ -168,12 +178,14 @@ export default function NavBar() {
               ) : (
                 <>
                   <Link
+                    onClick={() => setNavbar(false)}
                     to={"/auth/login"}
                     className="inline-block w-full px-4 py-2 text-center text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
                   >
                     Sign in
                   </Link>
                   <Link
+                    onClick={() => setNavbar(false)}
                     to={"/auth/register"}
                     className="inline-block w-full px-4 py-2 text-center text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
                   >
