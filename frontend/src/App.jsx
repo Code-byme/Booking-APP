@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import Listings from "./pages/Listings";
 import EventDetail from "./pages/EventDetail";
+import Carts from "./pages/Carts";
 
 function App() {
   return (
@@ -19,11 +20,13 @@ function App() {
             <Route  path="/auth/register" element={<SignUp />} />
             <Route  path="/eventdetail/:id" element={<EventDetail />} />
             <Route  path="/listings/:id" element={<Listings />} />
+            <Route  path="/cart/" element = {<Carts />} />
           </Route>
         </Routes>
       </BrowserRouter>
     </div>
   );
 }
+
 
 export default App;

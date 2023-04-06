@@ -24,6 +24,7 @@ const hash = bcrypt.hashSync(req.body.password, salt);
 }
 
 const login = async (req,res,next) => {
+    console.log(req.body.username);
     try {
     const user = await User.findOne({username:req.body.username})
     if(!user) return next(createError(404, "User not found!"))

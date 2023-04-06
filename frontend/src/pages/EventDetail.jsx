@@ -1,8 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,useContext} from "react";
 import { useParams } from "react-router-dom";
 import  DOMPurify from 'dompurify';
+import { AuthContext } from "../context/AuthContext";
+
+import axios from "axios";
 
 function EventDetail() {
+  const { user } = useContext(AuthContext);
+
+  function handleClick() {
+
+    const data = {
+      event: event.title,
+      eventId: event.id,
+      quantity: 1,
+      price: event.price,
+      category: event.category,
+      username: user.username,
+      imgEvent:event.image
+    };
+  
+    axios.post('http://localhost:4000/api/cart', data)
+      .then(response => console.log(response.data))
+      .catch(error => console.error(error));
+  }
   
   const routeParams = useParams();
   const [event, setEvent] = useState();
@@ -30,6 +51,9 @@ function EventDetail() {
     const toggleReadMore = () => {
       setIsReadMore(!isReadMore);
     };
+
+   
+
     if(isReadMore){
       return (
         <>
@@ -98,7 +122,7 @@ function EventDetail() {
               {event.city}-{event.country}
             </span>
             <p className="font-normal text-gray-700 ">
-              Heure {event.open_at}
+              Heure du spectale {event.open_at}
             </p>
           </a>
           <div className="mt-3">
@@ -110,7 +134,7 @@ function EventDetail() {
                     {event.price} Dhs
                   </h5>
                   
-                  <button
+                  <button onClick={handleClick}
                     type="button"
                     className="inline-block bg-yellow-500 w-2/3 rounded bg-primary px-6 pt-2.5 pb-2 text-white font-sans uppercase leading-normal   transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]"
                     data-te-ripple-init

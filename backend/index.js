@@ -8,6 +8,7 @@ const authRoute = require("./routes/auth")
 const usersRoute = require("./routes/users")
 const hotelsRoute = require("./routes/hotels")
 const roomsRoute = require("./routes/rooms")
+const cartsRoute = require("./routes/carts")
 const bodyParser = require ('body-parser')
 const cookieParser = require('cookie-parser')
 const request = require('request')
@@ -65,7 +66,7 @@ app.use("/api/auth", authRoute)
 app.use("/api/users", usersRoute)
 app.use("/api/hotels", hotelsRoute)
 app.use("/api/rooms", roomsRoute)
-
+app.use("/api/", cartsRoute)
 
 app.use((err,req,res,next) => {
   const errorStatus = err.status || 500
