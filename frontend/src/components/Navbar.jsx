@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
-  const { user } = useContext(AuthContext);
   const navigate  = useNavigate();
+  const {  dispatch,user} = useContext(AuthContext);
+
 
   function Logout() {
     localStorage.removeItem("user");
-    window.location.reload(true);
+    dispatch({ type: "LOGOUT" });
+
   }
 
   return (
