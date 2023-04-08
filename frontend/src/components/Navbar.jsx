@@ -199,6 +199,7 @@ export default function NavBar() {
         {user ? (
           <div className=" hidden lg:flex">
             <p className="mr-7">{user.username}</p>
+            <Link to={'/cart'}>My cart</Link>
             <button
               onClick={() => Logout()}
               className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
