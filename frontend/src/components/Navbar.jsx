@@ -10,7 +10,7 @@ export default function NavBar() {
 
   function Logout() {
     localStorage.removeItem("user");
-    navigate(0)
+    navigate("/")
 
   }
 
