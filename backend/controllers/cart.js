@@ -63,11 +63,13 @@ const updateCartItem = async (req, res) => {
 // Remove a specific item from cart
 const removeCartItem = async (req, res) => {
   try {
-    const cartItem = await Cart.findById(req.params.id);
-    if (!cartItem) {
+    const { username, eventId } = req.body;
+    const cartItemfound = await Cart.findOne({username:username, eventId:eventId});
+    if (!cartItemfound) {
       return res.status(404).json({ message: "Item not found" });
     }
-    await cartItem.remove();
+    const cartItem = await Cart.deleteOne({username:username, eventId:eventId});
+
     res.json({ message: "Item removed from cart" });
   } catch (err) {
     res.status(500).json({ message: err.message });

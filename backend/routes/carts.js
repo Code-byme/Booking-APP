@@ -16,6 +16,6 @@ router.get("/cart/:id", getCartItemById);
 router.patch("/cart/:id", updateCartItem);
 
 // Remove a specific ticket from cart
-router.delete("/cart/:id", removeCartItem);
+router.delete("/cart/", removeCartItem);
 
 module.exports = router;

@@ -22,7 +22,7 @@ function SignUp() {
     dispatch({ type: "REGISTER_START" });
   
     try {
-      const response = await axios.post("http://localhost:4000/api/auth/register", credentials, {
+      const response = await axios.post("https://backend-szh0.onrender.com/api/auth/register", credentials, {
         headers: {
           "Content-Type": "application/json"
         }

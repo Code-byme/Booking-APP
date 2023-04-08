@@ -1,14 +1,24 @@
 const User = require("../models/User");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken")
 
-const updateUser = async (req,res,next) => {
+const updateUser = async (req, res, next) => {
+
+
+    const { email, username, password } = req.body;
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
     try {
-        const updatedUser = await User.findByIdAndUpdate(req.params.id, {$set: req.body}, {new: true})
-        res.status(200).json(updatedUser)
+      const user = await User.findOneAndUpdate(
+        { email: email },
+        { $set: { username, password:hash } },
+        { new: true }
+      );
+      res.status(200).json(user);
     } catch (err) {
-        next(err)
-        
+      next(err);
     }
-}
+  };
 
 const deleteUser = async (req,res,next) => {
     try {

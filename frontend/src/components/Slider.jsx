@@ -55,7 +55,7 @@ export default function Slider() {
         <SwiperSlide>
           <Link to={"/eventdetail/2713"}>
           <img
-            src="https://www.ticket.ma/upload/sliders/699/original_otium_sliderrrrr.png" // otium
+            src="https://www.ticket.ma/upload/sliders/710/original_WhatsApp_Image_2023_03_31_at_10_17_48.jpeg" // otium
             alt=""
           />
           </Link>
