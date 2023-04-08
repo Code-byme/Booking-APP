@@ -21,8 +21,8 @@ function App() {
             <Route  path="/auth/register" element={<SignUp />} />
             <Route  path="/eventdetail/:id" element={<EventDetail />} />
             <Route  path="/listings/:id" element={<Listings />} />
-            <Route  path="/cart/" element = {<Carts />} />
-            <Route  path="/profile/" element = {<Profile/>} />
+            <Route  path="/cart" element = {<Carts />} />
+            <Route  path="/profile" element = {<Profile/>} />
           </Route>
         </Routes>
       </BrowserRouter>
