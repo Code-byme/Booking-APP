@@ -37,12 +37,13 @@ export default function NavBar() {
             </Link>
             <div className="md:hidden">
               <div className="flex">
-            <div className="ml-5 flex items-center justify-center h-5 w-3 border border-solid bg-green-600 absolute text-white ">
+                {user  &&   <><div className="ml-5 flex items-center justify-center h-5 w-3 border border-solid bg-green-600 absolute text-white ">
               {count}
     
               </div>
             <Link className="mr-4 mt-1" to={'/cart'}><CgShoppingCart size={30}/></Link>
-            <Link className="mr-4 mt-1" to={'/profile'}><CgProfile size={30}/></Link>
+            <Link className="mr-4 mt-1" to={'/profile'}><CgProfile size={30}/></Link></> }
+          
             <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
                 onClick={() => setNavbar(!navbar)}
