@@ -9,26 +9,37 @@ function Carts() {
   const [total, setTotal] = useState(0);
   const {count, setCount} = useContext(CountContext)
   const getEvent = async () => {
-    axios
-      .get(
-        `https://backend-szh0.onrender.com/api/cart?username=${user.username}`
-      )
-      .then((response) => {
-        setEvent(response.data);
-        console.log(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
-  useEffect(() => {
+    try {
+      const response = await axios.get(`https://backend-szh0.onrender.com/api/cart?username=${user.username}`);
+      setEvent(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }; 
+
+  function totalCal(){
+    if (event.length === 0) {
+      setTotal(0)
+    }
+  
     let totalValue = 0;
+  
     event.forEach((item) => {
       totalValue += item.quantity * item.price;
     });
     setTotal(totalValue);
+  }
+  
+  useEffect(() => {
     getEvent();
+  }, []);
+  
+  useEffect(() => {
+    console.log(event,"tottaaaaal");
+    totalCal();
   }, [event]);
+  
 
   const removeCartItem = async (eventId) => {
     try {

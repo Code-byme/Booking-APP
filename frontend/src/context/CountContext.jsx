@@ -1,24 +1,34 @@
-import { useState, createContext, useEffect} from "react";
-import React from "react";
+import { useState, createContext, useEffect } from "react";
+import axios from "axios";
 
-export const CountContext = React.createContext();
+export const CountContext = createContext();
 
 function CountProvider(props) {
-    const [count, setCount] = useState(()=> {
-        const storedCount = localStorage.getItem('count');
-        return storedCount !== null ? JSON.parse(storedCount) : 0;
-    });
+  const [count, setCount] = useState(0);
 
-    useEffect(() => {
-        localStorage.setItem('count', JSON.stringify(count));
-    }, [count])
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user"));
 
-  
-    return (
-      <CountContext.Provider value={{ count, setCount }}>
-        {props.children}
-      </CountContext.Provider>
-    );
-  }
+    const fetchData = async () => {
+      console.log(user,"context");
+      try {
+        const response = await axios.get(
+          `https://backend-szh0.onrender.com/api/cart?username=${user.username}`
+        );
+        setCount(response.data.length);
+      } catch (error) {
+        console.log(error);
+      }
+    };
 
-export default CountProvider
+    fetchData();
+  }, []);
+
+  return (
+    <CountContext.Provider value={{ count, setCount }}>
+      {props.children}
+    </CountContext.Provider>
+  );
+}
+
+export default CountProvider;
