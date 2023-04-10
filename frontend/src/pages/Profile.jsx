@@ -25,7 +25,7 @@ function Profile() {
     };
   
     return (
-        <div className='bg-[url("/bg.jpg")] bg-cover'>
+        <div className='bg-slate-50 pb-20'>
       <div className="max-w-md mx-auto py-6">
         <div className="bg-white shadow overflow-hidden sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">
@@ -45,8 +45,7 @@ function Profile() {
                     value={username}
                     onChange={handleNameChange}
                     autoComplete="given-name"
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                  />
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 :bg-gray-700 :border-gray-600 :placeholder-gray-400 :text-white :focus:ring-blue-500 :focus:border-blue-500"                  />
                 </div>
               </div>
   
@@ -62,8 +61,7 @@ function Profile() {
                     value={email}
                     onChange={handleEmailChange}
                     autoComplete="email"
-                    className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                  />
+                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 :bg-gray-700 :border-gray-600 :placeholder-gray-400 :text-white :focus:ring-blue-500 :focus:border-blue-500"                  />
                 </div>
               </div>
   

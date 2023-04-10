@@ -21,7 +21,7 @@ function PopularEvents() {
         <div className="flex items-center py-4">
         
         <div className="flex-grow h-px bg-gray-400 mr-6"></div> 
-        <h1 className="text-3xl font-medium mt-9 mb-6 text-center">Les événements populaires</h1>
+        <h1 className="text-3xl font-medium mt-9 mb-6 text-center">Popular Events</h1>
         <div className="flex-grow h-px bg-gray-400 ml-6"></div>
     
         </div>

@@ -2,12 +2,21 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { CgProfile, CgShoppingCart } from "react-icons/cg";
+import { CountContext } from "../context/CountContext";
+
+
+
 
 export default function NavBar() {
   const [navbar, setNavbar] = useState(false);
   const navigate  = useNavigate();
-  const {  dispatch,user} = useContext(AuthContext);
-
+  const { dispatch,user} = useContext(AuthContext);
+  // const [count,  setcount] = useState(0)
+  // function counter (props){
+  //   setcount(count + 1)
+  // }
+  const {count, setCount} = useContext(CountContext)
 
   function Logout() {
     localStorage.removeItem("user");
@@ -60,6 +69,7 @@ export default function NavBar() {
                     />
                   </svg>
                 )}
+                
               </button>
             </div>
           </div>
@@ -115,6 +125,7 @@ export default function NavBar() {
             }`}
           >
             <ul className="sm:hidden md:hidden lg:flex items-center justify-center space-y-8 md:space-x-6 md:space-y-0">
+           
               <li className="hover:text-indigo-200 ">
                 <Link
                   onClick={() => setNavbar(false)}
@@ -167,8 +178,7 @@ export default function NavBar() {
               {user ? (
                 <>
                   {" "}
-                  <p className="mr-7">{user.username}</p>
-                  <button
+                   <button
                     onClick={() => {
                       Logout();
                       setNavbar(false);
@@ -201,8 +211,13 @@ export default function NavBar() {
         </div>
         {user ? (
           <div className=" hidden lg:flex">
-            <p className="mr-7">{user.username}</p>
-            <Link to={'/cart'}>My cart</Link>
+            <div className="ml-5 flex items-center justify-center h-5 w-3 border border-solid bg-green-600 absolute text-white ">
+              {count}
+    
+              </div>
+            <Link className="mr-4 mt-1" to={'/cart'}><CgShoppingCart size={30}/></Link>
+            <Link className="mr-4 mt-1" to={'/profile'}><CgProfile size={30}/></Link>
+            
             <button
               onClick={() => Logout()}
               className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"

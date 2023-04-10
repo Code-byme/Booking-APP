@@ -4,11 +4,13 @@ import  DOMPurify from 'dompurify';
 import { AuthContext } from "../context/AuthContext";
 
 import axios from "axios";
+import { CountContext } from "../context/CountContext";
 
 function EventDetail() {
   const { user } = useContext(AuthContext);
+  const {count, setCount} = useContext(CountContext)
 
-  function handleClick() {
+  function handleClick({counter}) {
 
     const data = {
       event: event.title,
@@ -17,12 +19,19 @@ function EventDetail() {
       price: event.price,
       category: event.category,
       username: user.username,
-      imgEvent:event.image
+      imgEvent:event.image,
+      dateOfEvent : event.event_date_format,
+      openAt : event.open_at,
+      startAt : event.start_date
     };
   
-    axios.post('https://backend-szh0.onrender.com/api/cart', data)
-      .then(response => console.log(response.data))
+    axios.post('http://localhost:4000/api/cart', data)
+      .then(response => {
+        console.log(response.data)
+        setCount(count + 1)
+      })      
       .catch(error => console.error(error));
+      
   }
   
   const routeParams = useParams();
@@ -142,6 +151,7 @@ function EventDetail() {
                   >
                     Acheter
                   </button>
+                  
                 </div>
                 <div className="border-t-2 border-neutral-100 py-3 px-6">
                   {/* facebook twitter */}

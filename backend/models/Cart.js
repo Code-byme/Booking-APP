@@ -30,7 +30,19 @@ const CartSchema = new Schema({
     username : {
         type : String,
         required : true,
-    }
+    },
+    dateOfEvent: {
+        type: String,
+        
+      },
+      openAt: {
+        type: String,
+        
+      },
+      startAt: {
+        type: String,
+        
+      }
 
     })
 
