@@ -44,7 +44,7 @@ function Carts() {
   const removeCartItem = async (eventId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/cart?username=${user.username}&eventId=${eventId}`
+        `https://backend-szh0.onrender.com/api/cart?username=${user.username}&eventId=${eventId}`
       );
       setCount(count - 1)
       getEvent();

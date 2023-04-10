@@ -25,7 +25,7 @@ function EventDetail() {
       startAt : event.start_date
     };
   
-    axios.post('http://localhost:4000/api/cart', data)
+    axios.post('https://backend-szh0.onrender.com/api/cart', data)
       .then(response => {
         console.log(response.data)
         setCount(count + 1)
