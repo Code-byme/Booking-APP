@@ -10,7 +10,7 @@ function EventDetail() {
   const { user } = useContext(AuthContext);
   const {count, setCount} = useContext(CountContext)
 
-  function handleClick({counter}) {
+  function handleClick() {
 
     const data = {
       event: event.title,
@@ -36,11 +36,7 @@ function EventDetail() {
   
   const routeParams = useParams();
   const [event, setEvent] = useState();
-  function htmlDecode(content) {
-    let e = document.createElement('div');
-    e.innerHTML = content;
-    return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
-  }
+
   const getEvent = async () => {
     const response = await fetch(
       `https://backend-szh0.onrender.com/ticket/?url=http://35.163.82.245:8081/events/details/${routeParams.id}`

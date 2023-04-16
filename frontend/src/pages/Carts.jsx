@@ -2,12 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import { CountContext } from "../context/CountContext";
+import { useNavigate } from "react-router-dom";
 
 function Carts() {
   const { user } = useContext(AuthContext);
   const [event, setEvent] = useState([]);
   const [total, setTotal] = useState(0);
   const {count, setCount} = useContext(CountContext)
+  const navigate = useNavigate()
   const getEvent = async () => {
     try {
       const response = await axios.get(`https://backend-szh0.onrender.com/api/cart?username=${user.username}`);
@@ -36,7 +38,6 @@ function Carts() {
   }, []);
   
   useEffect(() => {
-    console.log(event,"tottaaaaal");
     totalCal();
   }, [event]);
   
@@ -54,6 +55,26 @@ function Carts() {
     }
   };
 
+
+  function handleClick() {
+
+    const data = {
+      eventId: event[0].eventId,
+      username: user.username,
+    };
+    console.log(event);
+  
+    axios.post('http://localhost:4000/api/order', data)
+      .then(response => {
+        console.log(response.data)
+      })      
+      .catch(error => console.error(error));
+      navigate('/ticket')
+      
+  }
+
+ 
+  
   return (
     <div className="lg:w-[60%] border mx-auto my-5 px-[25px] py-[15px] border-solid border-[#ddd]">
       {event.map((item) => (
@@ -111,7 +132,7 @@ function Carts() {
         <p className="font-semibold">{total} Dhs</p>
       </div>
       <div className="flex">
-      <button class="bg-yellow-500 hover:bg-yellow-700 text-white  mt-4 font-bold py-2 px-10 rounded mx-auto">
+      <button onClick={handleClick} className="bg-yellow-500 hover:bg-yellow-700 text-white  mt-4 font-bold py-2 px-10 rounded mx-auto">
         Confirm Order
       </button>
       </div>

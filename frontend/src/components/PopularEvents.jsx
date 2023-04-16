@@ -25,9 +25,9 @@ function PopularEvents() {
         <div className="flex-grow h-px bg-gray-400 ml-6"></div>
     
         </div>
-        <div className="max-w-screen-lg grid grid-cols-1 gap-6 text-center mx-auto w-2/3 lg:grid-cols-4 ">
+        <div  className="max-w-screen-lg grid grid-cols-1 gap-6 text-center mx-auto w-2/3 lg:grid-cols-4 ">
   {events.map(event=>{
-    return    <>  <Link to={"/eventdetail/"+event.id} > <Card event={event} /> </Link></>
+    return    <div key={event.id}>  <Link to={"/eventdetail/"+event.id} > <Card event={event} /> </Link> </div>
 
   })}
   </div>

@@ -13,6 +13,8 @@ const bodyParser = require ('body-parser')
 const cookieParser = require('cookie-parser')
 const request = require('request');
 const updateRoute = require('./routes/users');
+const orderRoute = require('./routes/orders')
+const ticketRoute = require('./routes/tickets')
 
 
 const url = process.env.MONGO_KEY
@@ -69,6 +71,8 @@ app.use("/api/hotels", hotelsRoute)
 app.use("/api/rooms", roomsRoute)
 app.use("/api/", cartsRoute)
 app.use("/api/profile", updateRoute)
+app.use("/api/order", orderRoute)
+app.use("/api/ticket", ticketRoute)
 
 app.use((err,req,res,next) => {
   const errorStatus = err.status || 500

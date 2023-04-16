@@ -11,18 +11,18 @@ import Profile from "./pages/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
+import Ticket from "./pages/Ticket";
 
 
 
 function App() {
-  const {  user} = useContext(AuthContext);
+  const {user} = useContext(AuthContext);
 
   return (
     <div>
       <BrowserRouter>
         <Routes>
-
-          <Route element={<LayoutHeaderOnly />}>
+           <Route element={<LayoutHeaderOnly />}>
             <Route  path="/" element={<Home />} />
             <Route  path="/auth/login" element={<Login />} />
             <Route  path="/auth/register" element={<SignUp />} />
@@ -31,6 +31,8 @@ function App() {
             <Route  path="/cart" element = { <ProtectedRoute user={user}><Carts /></ProtectedRoute>} />
             <Route  path="/profile" element = {<ProtectedRoute user={user}><Profile/></ProtectedRoute>}  />
           </Route>
+          <Route  path="/ticket/" element = {<Ticket/>} />
+
         </Routes>
       </BrowserRouter>
     </div>

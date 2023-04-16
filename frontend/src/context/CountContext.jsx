@@ -10,7 +10,7 @@ function CountProvider(props) {
     const user = JSON.parse(localStorage.getItem("user"));
 
     const fetchData = async () => {
-      console.log(user,"context");
+      
       try {
         const response = await axios.get(
           `https://backend-szh0.onrender.com/api/cart?username=${user.username}`

@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { AuthContext } from '../context/AuthContext';
+import axios from "axios"
 
 function Profile() {
     const {user} = useContext(AuthContext)
     const [username, setUsername] = useState(user.username);
     const [email, setEmail] = useState(user.email);
+    const [password, setPassword] = useState("")
     
   
     const handleNameChange = (e) => {
@@ -16,14 +18,27 @@ function Profile() {
     };
   
     const handlePassChange = (e) => {
-      setBio(e.target.value);
+      setPassword(e.target.value);
     };
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+      
       e.preventDefault();
-      // Handle form submission here
+      const data = {
+        email: user.email, // replace with actual email
+        username: user.username, // replace with actual username
+        password: password, // replace with actual password
+      };
+      console.log(data);
+      try {
+        const response = await axios.put('http://localhost:4000/api/profile', data);
+        alert("Update has been successfully!"); 
+      } catch (err) {
+        console.error(err); 
+      }
     };
-  
+      
+ 
     return (
         <div className='bg-slate-50 pb-20'>
       <div className="max-w-md mx-auto py-6">
@@ -32,7 +47,7 @@ function Profile() {
             <h3 className="text-lg leading-6 font-medium text-gray-900">Edit Information</h3>
           </div>
           <div className="border-t border-gray-200">
-            <form onSubmit={handleSubmit}>
+            <form>
               <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2">
                   Username
@@ -82,7 +97,7 @@ function Profile() {
                 </div>
               </div>
               <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
-          <button
+          <button onClick={handleSubmit}
             type="submit"
             className=" text-white bg-gray-600  hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center :bg-primary-600 :hover:bg-primary-700 :focus:ring-primary-800"
           >

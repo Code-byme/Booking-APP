@@ -21,7 +21,7 @@ function PastEvents() {
         </div>
     <div className="max-w-screen-lg grid grid-cols-1 gap-6 text-center mx-auto w-2/3 lg:grid-cols-4 ">
   {events.map(event=>{
-    return <Card event={event}/>
+    return <div key={event.id}><Card event={event}/></div>
   })}
   </div>
 </div>
