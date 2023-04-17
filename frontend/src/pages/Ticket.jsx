@@ -3,9 +3,12 @@ import { AiOutlineScissor } from "react-icons/ai";
 import { GiTicket } from "react-icons/gi";
 import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf'
 
 
 function Ticket() {
+  const [loader, setLoader] = useState(false);
   const [event, setEvent] = useState([]);
   const { user } = useContext(AuthContext);
   const getEvent = async () => {
@@ -20,16 +23,38 @@ function Ticket() {
   useEffect(() => {
     getEvent();
   }, []);
+
+  const downloadPDF = async () => {
+    try {
+      const capture = document.querySelector(".ticket");
+      setLoader(true);
+  
+      const canvas = await html2canvas(capture);
+      const img = canvas.toDataURL("image/png");
+      const doc = new jsPDF('p', 'mm', 'a4');
+      const componentWidth = doc.internal.pageSize.getWidth();
+      const componentHeight = doc.internal.pageSize.getHeight()
+      doc.addImage(img, 'PNG', 0, 0, componentWidth, componentHeight);
+      setLoader(false);
+      doc.save('ticket.pdf');
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div>
       {event.map(item => {
         return (
 <div className="bg-slate-200 h-full">
-         <div className="bg-white w-[60%] mx-auto h-full">
+         <div className="bg-white w-[60%] mx-auto h-full ticket">
            <div className="flex justify-between bg-gray-900 text-white p-5">
              <img src="//www.ticket.ma/img/logo.png" className="w-20 " alt="" />
-             <button className="font-semibold text-gray-300 hover:text-white">
-               Dowload
+             <button onClick={downloadPDF} disabled={!(loader===false)} className="font-semibold text-gray-300 hover:text-white">
+               {loader?(
+                <span>Downloading</span>
+               ):(
+                <span>Download</span>
+               )}
              </button>
            </div>
            <div className="font-bold text-2xl p-6">
