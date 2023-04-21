@@ -7,6 +7,12 @@ const OrderSchema = new Schema({
         type: Number, 
         required: true,
     },
+
+    qrCode : {
+        type : String,
+        required : true,
+    },
+
     
     username : {
         type : String,

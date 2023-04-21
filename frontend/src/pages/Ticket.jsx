@@ -6,6 +6,7 @@ import axios from "axios";
 import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { Link } from "react-router-dom";
+import QRCode from 'qrcode.react';
 
 
 
@@ -173,7 +174,7 @@ function Ticket() {
                     <li className="font-semibold">0000000001</li>
                   </ul>
                   <div className="w-24 mx-auto bg-white  ">
-                    <img src="/qr.png" alt="QR-Ticket-Scanner" />
+                  <QRCode value="https://ticket-v2.vercel.app/events/details/${routeParams.id}" size={100} />
                   </div>
                   <p className="text-sm text-center text-gray-600">
                     Powered by Ticket-V2

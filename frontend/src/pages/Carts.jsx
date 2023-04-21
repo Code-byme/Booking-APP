@@ -55,16 +55,17 @@ function Carts() {
     }
   };
 
-
+  const generateRandomString = (length) => [...Array(length)].map(() => Math.random().toString(36)[2]).join('');
   function handleClick() {
 
     const data = {
       eventId: event[0].eventId,
       username: user.username,
+      qrCode : generateRandomString(10)
     };
-    console.log(event);
+    console.log(data);
   
-    axios.post('https://backend-szh0.onrender.com/api/order', data)
+    axios.post('http://localhost:4000/api/order', data)
       .then(response => {
         console.log(response.data)
       })      

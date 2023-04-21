@@ -2,7 +2,7 @@ const Order = require("../models/Order")
 
 const orderedEvent = async (req, res) => {
     try {
-      const { eventId} = req.body;
+      const {eventId} = req.body;
       if (!eventId || typeof eventId !== 'number') {
         return res.status(400).json({ message: 'Invalid eventId' });
       }
