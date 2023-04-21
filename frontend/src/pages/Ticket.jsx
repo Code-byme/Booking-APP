@@ -34,7 +34,7 @@ function Ticket() {
     console.log(eventId)
     try {
       const response = await axios.get(
-        `http://localhost:4000/api/order/get?eventId=${eventId}`
+        `https://backend-szh0.onrender.com/api/order/get?eventId=${eventId}`
       );
       return await response.data[0].qrCode 
      
