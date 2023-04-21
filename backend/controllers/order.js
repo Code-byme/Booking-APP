@@ -25,4 +25,21 @@ const orderedEvent = async (req, res) => {
     }
   };
 
-  module.exports = {orderedEvent, getEventOrdered}
+  const checkQrcode = async (req, res) => {
+    try {
+      const orderEvents = await Order.find({qrCode:req.query.qrCode});
+      res.json(orderEvents);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+
+  const getQrCode = async (req, res) => {
+    try {
+      const orderEvents = await Order.find({eventId:req.query.eventId});
+      res.json(orderEvents);
+    } catch (err) {
+      res.status(500).json({ message: err.message });
+    }
+  };
+  module.exports = {orderedEvent, getEventOrdered, checkQrcode, getQrCode}

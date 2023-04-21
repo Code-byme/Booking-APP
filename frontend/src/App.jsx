@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
 import Ticket from "./pages/Ticket";
+import Verification from "./pages/Verification";
 
 
 
@@ -31,6 +32,7 @@ function App() {
             <Route  path="/cart" element = { <ProtectedRoute user={user}><Carts /></ProtectedRoute>} />
             <Route  path="/profile" element = {<ProtectedRoute user={user}><Profile/></ProtectedRoute>}  />
           </Route>
+          <Route  path= "/check/:qrCode" element = {<Verification />} />
           <Route  path="/ticket/" element = {<Ticket/>} />
 
         </Routes>

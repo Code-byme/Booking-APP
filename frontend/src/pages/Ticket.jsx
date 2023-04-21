@@ -11,6 +11,7 @@ import QRCode from 'qrcode.react';
 
 
 function Ticket() {
+  const [qrCode, setQrcode] = useState("")
   const [loader, setLoader] = useState(false);
   const [event, setEvent] = useState([]);
   const { user } = useContext(AuthContext);
@@ -29,6 +30,21 @@ function Ticket() {
     getEvent();
   }, []);
 
+  const getQrcode = async (eventId) => {
+    console.log(eventId)
+    try {
+      const response = await axios.get(
+        `http://localhost:4000/api/order/get?eventId=${eventId}`
+      );
+      return await response.data[0].qrCode 
+     
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getQrcode();
+  }, [event]);
   const downloadPDF = async () => {
     try {
       const capture = document.querySelector(".ticket");
@@ -167,14 +183,14 @@ function Ticket() {
                     <p>Total : {item.price} Dhs</p>
                   </div>
                 </div>
-                <div className="bg-slate-100 h-72  w-[40%] leading-9">
+                <div className="bg-slate-100 h-72  w-[40%] leading-8">
                   <ul className="p-5 flex flex-col items-center">
                     <li className="font-semibold">Online</li>
                     <li>Counter</li>
                     <li className="font-semibold">0000000001</li>
                   </ul>
                   <div className="w-24 mx-auto bg-white  ">
-                  <QRCode value="https://ticket-v2.vercel.app" size={100} />
+                  <QRCode value={async () => `https://ticket-v2.vercel.app/check/${await getQrcode(event)}`} size={110} />
                   </div>
                   <p className="text-sm text-center text-gray-600">
                     Powered by Ticket-V2
