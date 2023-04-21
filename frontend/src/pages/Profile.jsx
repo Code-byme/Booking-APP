@@ -31,7 +31,7 @@ function Profile() {
       };
       console.log(data);
       try {
-        const response = await axios.put('http://localhost:4000/api/profile', data);
+        const response = await axios.put('https://backend-szh0.onrender.com/api/profile', data);
         alert("Update has been successfully!"); 
       } catch (err) {
         console.error(err); 

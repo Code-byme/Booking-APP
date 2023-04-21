@@ -88,7 +88,7 @@ function EventDetail() {
 
   if (event) {
     return (
-      <div className="lg:flex justify-center lg:ml-[120px]">
+      <div className="lg:flex justify-center lg:ml-28">
         <div className="p-11">
           <div className="flex flex-col  bg-white rounded shadow-lg sm:w-3/4 md:w-1/2 lg:w-3/5">
             <div className="flex flex-col w- md:flex-row">
@@ -103,14 +103,14 @@ function EventDetail() {
                   {event.event_date_format.split(" ")[1]}
                 </div>
               </div>
-              <div className="p-4 font-normal text-gray-800 md:w-3/4">
+              <div className=" p-4 font-normal text-gray-800 md:w-3/4">
                 <h1 className="mb-4 lg:text-4xl text-2xl font-bold leading-none tracking-tight text-gray-800">
                   {event.title}
                 </h1>
                 <img className="" src={event.image} alt="" />
                 <h2 class="text-xl font-bold mb-2 mt-2">Description:</h2>
                 <ReadMore>{event.description}</ReadMore>
-                <div className="w-1/2 flex justify-end"></div>
+
               </div>
             </div>
           </div>

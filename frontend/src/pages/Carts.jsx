@@ -64,7 +64,7 @@ function Carts() {
     };
     console.log(event);
   
-    axios.post('http://localhost:4000/api/order', data)
+    axios.post('https://backend-szh0.onrender.com/api/order', data)
       .then(response => {
         console.log(response.data)
       })      
