@@ -4,6 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { CgProfile, CgShoppingCart } from "react-icons/cg";
 import { CountContext } from "../context/CountContext";
+import { BsBagCheck } from "react-icons/bs"
 
 
 
@@ -41,8 +42,9 @@ export default function NavBar() {
               {count}
     
               </div>
-            <Link className="mr-4 mt-1" to={'/cart'}><CgShoppingCart size={30}/></Link>
-            <Link className="mr-4 mt-1" to={'/profile'}><CgProfile size={30}/></Link></> }
+            <Link className="mr-4 mt-1" to={'/cart'}><CgShoppingCart size={28}/></Link>
+            <Link className="mr-4 mt-1" to={'/orders'}><BsBagCheck size={28}/></Link>
+            <Link className="mr-4 mt-1" to={'/profile'}><CgProfile size={28}/></Link></> }
           
             <button
                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -225,8 +227,11 @@ export default function NavBar() {
               {count}
     
               </div>
-            <Link className="mr-4 mt-1" to={'/cart'}><CgShoppingCart size={30}/></Link>
-            <Link className="mr-4 mt-1" to={'/profile'}><CgProfile size={30}/></Link>
+            <Link className="mr-4 mt-1" to={'/cart'}><CgShoppingCart size={28}/></Link>
+            <Link className="mr-4 mt-1" to={'/orders'}><BsBagCheck size={28}/></Link>
+            <Link className="mr-4 mt-1" to={'/profile'}><CgProfile size={28}/></Link>
+            
+            
             
             <button
               onClick={() => Logout()}

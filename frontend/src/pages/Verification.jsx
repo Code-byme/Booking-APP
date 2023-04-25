@@ -8,7 +8,7 @@ function Verification() {
     console.log(qrCode)
     const getEvent = async () => {
         const response = await fetch(
-          `http://localhost:4000/api/order/check?qrCode=${qrCode}`
+          `https://backend-szh0.onrender.com/api/order/check?qrCode=${qrCode}`
         );
         const data = await response.json();
         if(data[0]) {

@@ -13,12 +13,46 @@ const OrderSchema = new Schema({
         required : true,
     },
 
-    
     username : {
         type : String,
         required : true,
-    }
-
+    },
+    event : {
+        type: String,
+        required: true,
+      },
+      imgEvent: { 
+          type: String, 
+          required: true,
+          
+      },
+      
+      quantity : {
+          type: Number,
+          required : true,
+      },
+      price: {
+          type : Number,
+          required : true,
+          },
+      category : {
+          type : String,
+          required : true,
+      },
+     
+      dateOfEvent: {
+          type: String,
+          
+        },
+        openAt: {
+          type: String,
+          
+        },
+        startAt: {
+          type: String,
+          
+        }
+  
 
     })
 

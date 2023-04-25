@@ -7,10 +7,11 @@ import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 import { Link } from "react-router-dom";
 import QRCode from 'qrcode.react';
-
+import { useParams } from "react-router-dom";
 
 
 function Ticket() {
+  const {eventId} = useParams();
   const [qrCode, setQrcode] = useState("")
   const [loader, setLoader] = useState(false);
   const [event, setEvent] = useState([]);
@@ -18,8 +19,10 @@ function Ticket() {
   const getEvent = async () => {
     try {
       const response = await axios.get(
-        `https://backend-szh0.onrender.com/api/cart?username=${user.username}`
+        `https://backend-szh0.onrender.com/api/order/${eventId}?username=${user.username}`
       );
+      
+      
       setEvent(response.data);
       console.log(response.data);
     } catch (error) {
@@ -30,21 +33,21 @@ function Ticket() {
     getEvent();
   }, []);
 
-  const getQrcode = async (eventId) => {
-    console.log(eventId)
-    try {
-      const response = await axios.get(
-        `https://backend-szh0.onrender.com/api/order/get?eventId=${eventId}`
-      );
-      return await response.data[0].qrCode 
+  // const getQrcode = async (eventId) => {
+  //   console.log(eventId)
+  //   try {
+  //     const response = await axios.get(
+  //       `https://backend-szh0.onrender.com/api/order/get?eventId=${2680}`
+  //     );
+  //     setQrcode(response.data[0].qrCode) 
      
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  useEffect(() => {
-    getQrcode();
-  }, [event]);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+  // useEffect(() => {
+  //   getQrcode();
+  // }, [event]);
   const downloadPDF = async () => {
     try {
       const capture = document.querySelector(".ticket");
@@ -183,14 +186,13 @@ function Ticket() {
                     <p>Total : {item.price} Dhs</p>
                   </div>
                 </div>
-                <div className="bg-slate-100 h-72  w-[40%] leading-8">
+                <div className="bg-slate-100 h-72  w-[40%] leading-8 flex-shrink-0">
                   <ul className="p-5 flex flex-col items-center">
                     <li className="font-semibold">Online</li>
-                    <li>Counter</li>
-                    <li className="font-semibold">0000000001</li>
+                    <li className="font-semibold">{item.qrCode}</li>
                   </ul>
                   <div className="w-24 mx-auto bg-white  ">
-                  <QRCode value={async () => `https://ticket-v2.vercel.app/check/${await getQrcode(event)}`} size={110} />
+                  <QRCode value={`https://backend-szh0.onrender.com/api/order/check/${qrCode}`} size={110} />
                   </div>
                   <p className="text-sm text-center text-gray-600">
                     Powered by Ticket-V2

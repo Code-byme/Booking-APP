@@ -57,20 +57,32 @@ function Carts() {
 
   const generateRandomString = (length) => [...Array(length)].map(() => Math.random().toString(36)[2]).join('');
   function handleClick() {
-
-    const data = {
-      eventId: event[0].eventId,
-      username: user.username,
-      qrCode : generateRandomString(10)
-    };
-    console.log(data);
+    // console.log(event, "hhhhhhhhhhh")
+    // const data = {
+    //   eventId: event[0].eventId,
+    //   username: user.username,
+    //   qrCode : generateRandomString(10),
+    //   imgEvent : event[0].imgEvent,
+    //   event: event[0].event,
+    //   quantity: 1,
+    //   price: event[0].price,
+    //   category: event[0].category,
+    //   dateOfEvent : event[0].dateOfEvent,
+    //   openAt : event[0].openAt,
+    //   startAt : event[0].startAt
+      
+    // };
+    for(let x of event) {
+      x.qrCode = generateRandomString(10)
+    }
+    console.log(event);
   
-    axios.post('http://localhost:4000/api/order', data)
+    axios.post('https://backend-szh0.onrender.com/api/order', event)
       .then(response => {
         console.log(response.data)
       })      
       .catch(error => console.error(error));
-      navigate('/ticket')
+      navigate('/confirmation')
       
   }
 
@@ -78,8 +90,8 @@ function Carts() {
   
   return (
     <div className="lg:w-[60%] border mx-auto my-5 px-[25px] py-[15px] border-solid border-[#ddd]">
-      {event.map((item) => (
-        <div className="mt-10">
+      {event.map((item, index) => (
+        <div key={index} className="mt-10">
           <div className="flex flex-col lg:flex-row lg:justify-between items-center">
             <div className="w-full lg:w-auto">
               <img
@@ -99,17 +111,17 @@ function Carts() {
                     ]}
                 </p>
                 {/* to be changed */}
-                <p>Ouverture des portes : {item.openAt}</p>
-                <p>Heure du spectacle : {item.openAt}</p>
+                <p>Open At  : {item.openAt}</p>
+                <p>Start At: {item.openAt}</p>
               </div>
-              <div className="border border-solid-[#ddd] lg:ml-14 w-full lg:w-[40%] mt-4 lg:mt-0">
-                <div className="border border-solid h-[40px] flex justify-between items-center bg-slate-100">
+              <div className="border border-solid-[#ddd] lg:ml-14 w-full lg:w-[40%] mt-4 lg:mt-0 flex-shrink-0">
+                <div className="border border-solid h-[40px] flex justify-between items-center bg-slate-100 ">
                   <span className="p-2 font-bold">Tickets</span>
                   <button
                     onClick={() => removeCartItem(item.eventId)}
                     className="p-1 text-xs text-red-600 font-semibold"
                   >
-                    Supprimer
+                    Remove
                   </button>
                 </div>
                 <div className="flex justify-between">
@@ -129,7 +141,7 @@ function Carts() {
         </div>
       ))}
       <div className="bg-slate-100 h-[100px] mt-4 lg:mt-20 flex justify-between p-9">
-        <h2 className="text-lg font-normal">TOTAL à payer</h2>
+        <h2 className="text-lg font-normal">TOTAL </h2>
         <p className="font-semibold">{total} Dhs</p>
       </div>
       <div className="flex">
