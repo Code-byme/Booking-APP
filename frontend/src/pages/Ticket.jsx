@@ -192,7 +192,7 @@ function Ticket() {
                     <li className="font-semibold">{item.qrCode}</li>
                   </ul>
                   <div className="w-24 mx-auto bg-white  ">
-                  <QRCode value={`https://backend-szh0.onrender.com/api/order/check/${qrCode}`} size={110} />
+                  <QRCode value={`https://backend-szh0.onrender.com/api/order/check/${item.qrCode}`} size={110} />
                   </div>
                   <p className="text-sm text-center text-gray-600">
                     Powered by Ticket-V2
