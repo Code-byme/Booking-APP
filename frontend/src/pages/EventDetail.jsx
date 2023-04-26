@@ -145,7 +145,7 @@ function EventDetail() {
                     data-te-ripple-init
                     data-te-ripple-color="light"
                   >
-                    Acheter
+                    Book
                   </button>
                   
                 </div>
