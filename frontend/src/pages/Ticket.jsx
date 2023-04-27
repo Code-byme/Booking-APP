@@ -71,7 +71,7 @@ function Ticket() {
       {event.map((item,index) => {
         return (
           <div key={index} className="bg-slate-200 h-full">
-            <div className="bg-white w-[60%] mx-auto h-full ticket">
+            <div className="bg-white lg:w-[60%] mx-auto h-full ticket">
               <div className="flex justify-between bg-gray-900 text-white p-5">
                 <Link to={"/"}>
                 <img
@@ -92,38 +92,38 @@ function Ticket() {
                 <h2>Invoice</h2>
               </div>
 
-              <div className="flex justify-between text-gray-500">
+              <div className="flex lg:flex justify-between text-gray-500">
                 <p className="ml-6 leading-7">
                   Invoice to Amine <br />
-                  140 St Kilda Rd <br />
-                  Melbourne, Victoria <br />
-                  3000, Australia <br />
+                  Casablanca <br />
+                  20200, Morocco <br />
+                  
                 </p>
-                <p className="mr-28 leading-7">
+                <p className="mr-6 lg:mr-28 leading-7">
                   Invoice ID: YCCURW-00000 <br />
-                  Order Date : 15/04/2023
+                  Order Date : 28/04/2023
                   <br />
-                  Near Area Mall <br />
+                  
                 </p>
               </div>
 
-              <div className="relative overflow-x-auto mt-20">
-                <table className="w-full text-sm text-left text-gray-500 ">
-                  <thead className="text-xs text-gray-700 uppercase bg-gray-50 ">
+              <div className="  lg: relative overflow-x-auto mt-20">
+                <table className=" w-full text-sm text-left text-gray-500 ">
+                  <thead className=" text-xs text-gray-700 uppercase bg-gray-50 ">
                     <tr>
                       <th scope="col" className="px-6 py-3">
                         #
                       </th>
-                      <th scope="col" className="px-6 py-3">
+                      <th scope="col" className="lg:px-6 lg:py-3">
                         Event Details
                       </th>
-                      <th scope="col" className="px-6 py-3">
+                      <th scope="col" className="lg:px-6 lg:py-3">
                         Type
                       </th>
-                      <th scope="col" className="px-6 py-3">
+                      <th scope="col" className="lg:px-6 lg:py-3">
                         Quantity
                       </th>
-                      <th scope="col" className="px-6 py-3">
+                      <th scope="col" className="px-2 lg:px-6 lg:py-3">
                         Total
                       </th>
                     </tr>
@@ -138,12 +138,12 @@ function Ticket() {
                       </th>
                       <th
                         scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap "
+                        className="px-6 py-4 font-medium text-gray-900 flex flex-col w-36 lg:whitespace-nowrap lg:w-full"
                       >
                         {item.event}
                       </th>
-                      <td className="px-6 py-4">{item.category}</td>
-                      <td className="px-6 py-4">{item.quantity}</td>
+                      <td className="lg:px-6 lg:py-4">{item.category}</td>
+                      <td className="px-6 lg:py-4">{item.quantity}</td>
                       <td className="px-6 py-4">{item.price} Dhs</td>
                     </tr>
                   </tbody>
