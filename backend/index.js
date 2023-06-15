@@ -54,7 +54,7 @@ app.all('/ticket/*', function (req, res, next) {
       request({ url: targetURL, method: req.method, json: req.body },
           function (error, response, body) {
               if (error) {
-                  console.error('error: ')
+                  console.error('error: ' + response.statusCode)
               }
 //                console.log(body);
           }).pipe(res);
