@@ -9,7 +9,6 @@ const CartSchema = new Schema({
     imgEvent: { 
         type: String, 
         required: true,
-        
     },
     eventId: { 
         type: Number, 

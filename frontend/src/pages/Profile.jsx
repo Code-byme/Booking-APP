@@ -37,10 +37,8 @@ function Profile() {
         console.error(err); 
       }
     };
-      
- 
     return (
-        <div className='bg-slate-50 pb-20'>
+      <div className='bg-slate-50 pb-20'>
       <div className="max-w-md mx-auto py-6">
         <div className="bg-white shadow overflow-hidden sm:rounded-lg">
           <div className="px-4 py-5 sm:px-6">
